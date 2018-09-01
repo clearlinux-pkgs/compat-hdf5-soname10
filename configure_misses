@@ -1,0 +1,40 @@
+Configure miss: cached host
+Configure miss: config x86_64-generic-linux-gnu
+Configure miss: config x86_64-generic-linux-gnu
+Configure miss: config generic-linux-gnu
+Configure miss: config generic-linux-gnu
+Configure miss: config x86_64-linux-gnu
+Configure miss: config x86_64-linux-gnu
+Configure miss: config x86_64-generic
+Configure miss: config ./config/site-specific/host-arjan-box
+Configure miss: if unsupported combinations of configure options are allowed
+Configure miss: if Fortran interface enabled
+Configure miss: if Fortran 2003 interface enabled
+Configure miss: if c++ interface enabled
+Configure miss: if srcdir= and time commands work together
+Configure miss: if we should install only statically linked executables
+Configure miss: winsock2.h usability
+Configure miss: winsock2.h presence
+Configure miss: if libtool needs -no-undefined flag to build shared libraries
+Configure miss: thread safe support
+Configure miss: _getvideoconfig
+Configure miss: gettextinfo
+Configure miss: GetConsoleScreenBufferInfo
+Configure miss: _scrsize
+Configure miss: struct videoconfig
+Configure miss: struct text_info
+Configure miss: setsysinfo
+Configure miss: sigsetjmp
+Configure miss: debug flags
+Configure miss: whether function stack tracking is enabled
+Configure miss: whether metadata trace file code is enabled
+Configure miss: API tracing
+Configure miss: instrumented library
+Configure miss: whether a memory checking tool will be used
+Configure miss: if the direct I/O virtual file driver (VFD) is enabled
+Configure miss: if the machine has window style path name
+Configure miss: if using special algorithm to convert long double to (unsigned) long values
+Configure miss: if using special algorithm to convert (unsigned) long to long double values
+Configure miss: additional programs should be built
+Configure miss: whether to perform strict file format checks
+Configure miss: if alignment restrictions are strictly enforced
