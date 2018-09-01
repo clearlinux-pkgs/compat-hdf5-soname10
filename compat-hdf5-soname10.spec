@@ -4,7 +4,7 @@
 #
 Name     : compat-hdf5-soname10
 Version  : 1.8.20
-Release  : 1
+Release  : 2
 URL      : https://support.hdfgroup.org/ftp/HDF5/current18/src/hdf5-1.8.20.tar.gz
 Source0  : https://support.hdfgroup.org/ftp/HDF5/current18/src/hdf5-1.8.20.tar.gz
 Summary  : HDF5 is a unique technology suite that makes possible the management of extremely large and complex data collections.
@@ -82,11 +82,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535764201
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export SOURCE_DATE_EPOCH=1535766527
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -98,7 +94,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1535764201
+export SOURCE_DATE_EPOCH=1535766527
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/compat-hdf5-soname10
 cp COPYING %{buildroot}/usr/share/doc/compat-hdf5-soname10/COPYING
@@ -106,7 +102,7 @@ cp COPYING %{buildroot}/usr/share/doc/compat-hdf5-soname10/COPYING
 
 %files
 %defattr(-,root,root,-)
-/usr/lib64/libhdf5.settings
+%exclude /usr/lib64/libhdf5.settings
 
 %files bin
 %defattr(-,root,root,-)
