@@ -4,7 +4,7 @@
 #
 Name     : compat-hdf5-soname10
 Version  : 1.8.20
-Release  : 2
+Release  : 3
 URL      : https://support.hdfgroup.org/ftp/HDF5/current18/src/hdf5-1.8.20.tar.gz
 Source0  : https://support.hdfgroup.org/ftp/HDF5/current18/src/hdf5-1.8.20.tar.gz
 Summary  : HDF5 is a unique technology suite that makes possible the management of extremely large and complex data collections.
