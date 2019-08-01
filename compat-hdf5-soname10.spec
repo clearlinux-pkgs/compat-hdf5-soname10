@@ -4,63 +4,26 @@
 #
 Name     : compat-hdf5-soname10
 Version  : 1.8.20
-Release  : 3
+Release  : 4
 URL      : https://support.hdfgroup.org/ftp/HDF5/current18/src/hdf5-1.8.20.tar.gz
 Source0  : https://support.hdfgroup.org/ftp/HDF5/current18/src/hdf5-1.8.20.tar.gz
 Summary  : HDF5 is a unique technology suite that makes possible the management of extremely large and complex data collections.
 Group    : Development/Tools
 License  : BSD-4-Clause-UC
-Requires: compat-hdf5-soname10-bin
-Requires: compat-hdf5-soname10-lib
-Requires: compat-hdf5-soname10-license
-Requires: compat-hdf5-soname10-data
+Requires: compat-hdf5-soname10-lib = %{version}-%{release}
+Requires: compat-hdf5-soname10-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
-BuildRequires : glibc-dev
-BuildRequires : openmpi-dev
 BuildRequires : pkgconfig(zlib)
 
 %description
-h5repack_nested_8bit_enum_deflated.h5:
-h5repack_nested_8bit_enum.h5:
-enuberated 8bit type nested in compount type.  Original file provided
-by a user (HDFFV-8667) as a test file. Used h5copy to extract only the
-Compound type dataset. The non-deflated version is produced by h5repack.
-
-%package bin
-Summary: bin components for the compat-hdf5-soname10 package.
-Group: Binaries
-Requires: compat-hdf5-soname10-data
-Requires: compat-hdf5-soname10-license
-
-%description bin
-bin components for the compat-hdf5-soname10 package.
-
-
-%package data
-Summary: data components for the compat-hdf5-soname10 package.
-Group: Data
-
-%description data
-data components for the compat-hdf5-soname10 package.
-
-
-%package dev
-Summary: dev components for the compat-hdf5-soname10 package.
-Group: Development
-Requires: compat-hdf5-soname10-lib
-Requires: compat-hdf5-soname10-bin
-Requires: compat-hdf5-soname10-data
-Provides: compat-hdf5-soname10-devel
-
-%description dev
-dev components for the compat-hdf5-soname10 package.
-
+This distribution contains the HDF5 FORTRAN90 APIs source code (prototype)
+based on the HDF5 1.2.2 release (ftp://ftp.ncsa.uiuc.edu/HDF/HDF5/current),
+tests and examples.
 
 %package lib
 Summary: lib components for the compat-hdf5-soname10 package.
 Group: Libraries
-Requires: compat-hdf5-soname10-data
-Requires: compat-hdf5-soname10-license
+Requires: compat-hdf5-soname10-license = %{version}-%{release}
 
 %description lib
 lib components for the compat-hdf5-soname10 package.
@@ -81,150 +44,150 @@ license components for the compat-hdf5-soname10 package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1535766527
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1564681927
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1535766527
+export SOURCE_DATE_EPOCH=1564681927
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/compat-hdf5-soname10
-cp COPYING %{buildroot}/usr/share/doc/compat-hdf5-soname10/COPYING
+mkdir -p %{buildroot}/usr/share/package-licenses/compat-hdf5-soname10
+cp COPYING %{buildroot}/usr/share/package-licenses/compat-hdf5-soname10/COPYING
 %make_install
+## Remove excluded files
+rm -f %{buildroot}/usr/lib64/libhdf5.settings
+rm -f %{buildroot}/usr/bin/gif2h5
+rm -f %{buildroot}/usr/bin/h52gif
+rm -f %{buildroot}/usr/bin/h5cc
+rm -f %{buildroot}/usr/bin/h5copy
+rm -f %{buildroot}/usr/bin/h5debug
+rm -f %{buildroot}/usr/bin/h5diff
+rm -f %{buildroot}/usr/bin/h5dump
+rm -f %{buildroot}/usr/bin/h5import
+rm -f %{buildroot}/usr/bin/h5jam
+rm -f %{buildroot}/usr/bin/h5ls
+rm -f %{buildroot}/usr/bin/h5mkgrp
+rm -f %{buildroot}/usr/bin/h5perf_serial
+rm -f %{buildroot}/usr/bin/h5redeploy
+rm -f %{buildroot}/usr/bin/h5repack
+rm -f %{buildroot}/usr/bin/h5repart
+rm -f %{buildroot}/usr/bin/h5stat
+rm -f %{buildroot}/usr/bin/h5unjam
+rm -f %{buildroot}/usr/include/H5ACpublic.h
+rm -f %{buildroot}/usr/include/H5Apublic.h
+rm -f %{buildroot}/usr/include/H5Cpublic.h
+rm -f %{buildroot}/usr/include/H5DOpublic.h
+rm -f %{buildroot}/usr/include/H5DSpublic.h
+rm -f %{buildroot}/usr/include/H5Dpublic.h
+rm -f %{buildroot}/usr/include/H5Epubgen.h
+rm -f %{buildroot}/usr/include/H5Epublic.h
+rm -f %{buildroot}/usr/include/H5FDcore.h
+rm -f %{buildroot}/usr/include/H5FDdirect.h
+rm -f %{buildroot}/usr/include/H5FDfamily.h
+rm -f %{buildroot}/usr/include/H5FDlog.h
+rm -f %{buildroot}/usr/include/H5FDmpi.h
+rm -f %{buildroot}/usr/include/H5FDmpio.h
+rm -f %{buildroot}/usr/include/H5FDmulti.h
+rm -f %{buildroot}/usr/include/H5FDpublic.h
+rm -f %{buildroot}/usr/include/H5FDsec2.h
+rm -f %{buildroot}/usr/include/H5FDstdio.h
+rm -f %{buildroot}/usr/include/H5Fpublic.h
+rm -f %{buildroot}/usr/include/H5Gpublic.h
+rm -f %{buildroot}/usr/include/H5IMpublic.h
+rm -f %{buildroot}/usr/include/H5Ipublic.h
+rm -f %{buildroot}/usr/include/H5LTpublic.h
+rm -f %{buildroot}/usr/include/H5Lpublic.h
+rm -f %{buildroot}/usr/include/H5MMpublic.h
+rm -f %{buildroot}/usr/include/H5Opublic.h
+rm -f %{buildroot}/usr/include/H5PLextern.h
+rm -f %{buildroot}/usr/include/H5PLpublic.h
+rm -f %{buildroot}/usr/include/H5PTpublic.h
+rm -f %{buildroot}/usr/include/H5Ppublic.h
+rm -f %{buildroot}/usr/include/H5Rpublic.h
+rm -f %{buildroot}/usr/include/H5Spublic.h
+rm -f %{buildroot}/usr/include/H5TBpublic.h
+rm -f %{buildroot}/usr/include/H5Tpublic.h
+rm -f %{buildroot}/usr/include/H5Zpublic.h
+rm -f %{buildroot}/usr/include/H5api_adpt.h
+rm -f %{buildroot}/usr/include/H5overflow.h
+rm -f %{buildroot}/usr/include/H5pubconf.h
+rm -f %{buildroot}/usr/include/H5public.h
+rm -f %{buildroot}/usr/include/H5version.h
+rm -f %{buildroot}/usr/include/hdf5.h
+rm -f %{buildroot}/usr/include/hdf5_hl.h
+rm -f %{buildroot}/usr/lib64/libhdf5.so
+rm -f %{buildroot}/usr/lib64/libhdf5_hl.so
+rm -f %{buildroot}/usr/share/hdf5_examples/README
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_attribute.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_chunk_read.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_cmprss.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_compound.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_crtatt.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_crtdat.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_crtgrp.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_crtgrpar.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_crtgrpd.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_drivers.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_elink_unix2win.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_extend.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_extend_write.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_extlink.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_group.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_mount.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_rdwt.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_read.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_ref2reg.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_reference.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_select.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_shared_mesg.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_subset.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/h5_write.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/ph5example.c
+rm -f %{buildroot}/usr/share/hdf5_examples/c/run-c-ex.sh
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_ds1.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_image1.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_image2.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_lite1.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_lite2.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_lite3.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_table_01.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_table_02.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_table_03.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_table_04.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_table_05.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_table_06.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_table_07.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_table_08.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_table_09.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_table_10.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_table_11.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ex_table_12.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/image24pixel.txt
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/image8.txt
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/pal_rgb.h
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/ptExampleFL.c
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/c/run-hlc-ex.sh
+rm -f %{buildroot}/usr/share/hdf5_examples/hl/run-hl-ex.sh
+rm -f %{buildroot}/usr/share/hdf5_examples/run-all-ex.sh
 
 %files
 %defattr(-,root,root,-)
-%exclude /usr/lib64/libhdf5.settings
-
-%files bin
-%defattr(-,root,root,-)
-%exclude /usr/bin/gif2h5
-%exclude /usr/bin/h52gif
-%exclude /usr/bin/h5cc
-%exclude /usr/bin/h5copy
-%exclude /usr/bin/h5debug
-%exclude /usr/bin/h5diff
-%exclude /usr/bin/h5dump
-%exclude /usr/bin/h5import
-%exclude /usr/bin/h5jam
-%exclude /usr/bin/h5ls
-%exclude /usr/bin/h5mkgrp
-%exclude /usr/bin/h5perf_serial
-%exclude /usr/bin/h5redeploy
-%exclude /usr/bin/h5repack
-%exclude /usr/bin/h5repart
-%exclude /usr/bin/h5stat
-%exclude /usr/bin/h5unjam
-
-%files data
-%defattr(-,root,root,-)
-%exclude /usr/share/hdf5_examples/README
-%exclude /usr/share/hdf5_examples/c/h5_attribute.c
-%exclude /usr/share/hdf5_examples/c/h5_chunk_read.c
-%exclude /usr/share/hdf5_examples/c/h5_cmprss.c
-%exclude /usr/share/hdf5_examples/c/h5_compound.c
-%exclude /usr/share/hdf5_examples/c/h5_crtatt.c
-%exclude /usr/share/hdf5_examples/c/h5_crtdat.c
-%exclude /usr/share/hdf5_examples/c/h5_crtgrp.c
-%exclude /usr/share/hdf5_examples/c/h5_crtgrpar.c
-%exclude /usr/share/hdf5_examples/c/h5_crtgrpd.c
-%exclude /usr/share/hdf5_examples/c/h5_drivers.c
-%exclude /usr/share/hdf5_examples/c/h5_elink_unix2win.c
-%exclude /usr/share/hdf5_examples/c/h5_extend.c
-%exclude /usr/share/hdf5_examples/c/h5_extend_write.c
-%exclude /usr/share/hdf5_examples/c/h5_extlink.c
-%exclude /usr/share/hdf5_examples/c/h5_group.c
-%exclude /usr/share/hdf5_examples/c/h5_mount.c
-%exclude /usr/share/hdf5_examples/c/h5_rdwt.c
-%exclude /usr/share/hdf5_examples/c/h5_read.c
-%exclude /usr/share/hdf5_examples/c/h5_ref2reg.c
-%exclude /usr/share/hdf5_examples/c/h5_reference.c
-%exclude /usr/share/hdf5_examples/c/h5_select.c
-%exclude /usr/share/hdf5_examples/c/h5_shared_mesg.c
-%exclude /usr/share/hdf5_examples/c/h5_subset.c
-%exclude /usr/share/hdf5_examples/c/h5_write.c
-%exclude /usr/share/hdf5_examples/c/ph5example.c
-%exclude /usr/share/hdf5_examples/c/run-c-ex.sh
-%exclude /usr/share/hdf5_examples/hl/c/ex_ds1.c
-%exclude /usr/share/hdf5_examples/hl/c/ex_image1.c
-%exclude /usr/share/hdf5_examples/hl/c/ex_image2.c
-%exclude /usr/share/hdf5_examples/hl/c/ex_lite1.c
-%exclude /usr/share/hdf5_examples/hl/c/ex_lite2.c
-%exclude /usr/share/hdf5_examples/hl/c/ex_lite3.c
-%exclude /usr/share/hdf5_examples/hl/c/ex_table_01.c
-%exclude /usr/share/hdf5_examples/hl/c/ex_table_02.c
-%exclude /usr/share/hdf5_examples/hl/c/ex_table_03.c
-%exclude /usr/share/hdf5_examples/hl/c/ex_table_04.c
-%exclude /usr/share/hdf5_examples/hl/c/ex_table_05.c
-%exclude /usr/share/hdf5_examples/hl/c/ex_table_06.c
-%exclude /usr/share/hdf5_examples/hl/c/ex_table_07.c
-%exclude /usr/share/hdf5_examples/hl/c/ex_table_08.c
-%exclude /usr/share/hdf5_examples/hl/c/ex_table_09.c
-%exclude /usr/share/hdf5_examples/hl/c/ex_table_10.c
-%exclude /usr/share/hdf5_examples/hl/c/ex_table_11.c
-%exclude /usr/share/hdf5_examples/hl/c/ex_table_12.c
-%exclude /usr/share/hdf5_examples/hl/c/image24pixel.txt
-%exclude /usr/share/hdf5_examples/hl/c/image8.txt
-%exclude /usr/share/hdf5_examples/hl/c/pal_rgb.h
-%exclude /usr/share/hdf5_examples/hl/c/ptExampleFL.c
-%exclude /usr/share/hdf5_examples/hl/c/run-hlc-ex.sh
-%exclude /usr/share/hdf5_examples/hl/run-hl-ex.sh
-%exclude /usr/share/hdf5_examples/run-all-ex.sh
-
-%files dev
-%defattr(-,root,root,-)
-%exclude /usr/include/H5ACpublic.h
-%exclude /usr/include/H5Apublic.h
-%exclude /usr/include/H5Cpublic.h
-%exclude /usr/include/H5DOpublic.h
-%exclude /usr/include/H5DSpublic.h
-%exclude /usr/include/H5Dpublic.h
-%exclude /usr/include/H5Epubgen.h
-%exclude /usr/include/H5Epublic.h
-%exclude /usr/include/H5FDcore.h
-%exclude /usr/include/H5FDdirect.h
-%exclude /usr/include/H5FDfamily.h
-%exclude /usr/include/H5FDlog.h
-%exclude /usr/include/H5FDmpi.h
-%exclude /usr/include/H5FDmpio.h
-%exclude /usr/include/H5FDmulti.h
-%exclude /usr/include/H5FDpublic.h
-%exclude /usr/include/H5FDsec2.h
-%exclude /usr/include/H5FDstdio.h
-%exclude /usr/include/H5Fpublic.h
-%exclude /usr/include/H5Gpublic.h
-%exclude /usr/include/H5IMpublic.h
-%exclude /usr/include/H5Ipublic.h
-%exclude /usr/include/H5LTpublic.h
-%exclude /usr/include/H5Lpublic.h
-%exclude /usr/include/H5MMpublic.h
-%exclude /usr/include/H5Opublic.h
-%exclude /usr/include/H5PLextern.h
-%exclude /usr/include/H5PLpublic.h
-%exclude /usr/include/H5PTpublic.h
-%exclude /usr/include/H5Ppublic.h
-%exclude /usr/include/H5Rpublic.h
-%exclude /usr/include/H5Spublic.h
-%exclude /usr/include/H5TBpublic.h
-%exclude /usr/include/H5Tpublic.h
-%exclude /usr/include/H5Zpublic.h
-%exclude /usr/include/H5api_adpt.h
-%exclude /usr/include/H5overflow.h
-%exclude /usr/include/H5pubconf.h
-%exclude /usr/include/H5public.h
-%exclude /usr/include/H5version.h
-%exclude /usr/include/hdf5.h
-%exclude /usr/include/hdf5_hl.h
-%exclude /usr/lib64/libhdf5.so
-%exclude /usr/lib64/libhdf5_hl.so
 
 %files lib
 %defattr(-,root,root,-)
@@ -234,5 +197,5 @@ cp COPYING %{buildroot}/usr/share/doc/compat-hdf5-soname10/COPYING
 /usr/lib64/libhdf5_hl.so.10.2.1
 
 %files license
-%defattr(-,root,root,-)
-%exclude /usr/share/doc/compat-hdf5-soname10/COPYING
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/compat-hdf5-soname10/COPYING
