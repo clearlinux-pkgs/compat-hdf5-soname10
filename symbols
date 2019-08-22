@@ -1793,7 +1793,9 @@ libhdf5.so.10:H5T_convert
 libhdf5.so.10:H5T_convert_committed_datatype
 libhdf5.so.10:H5T_copy
 libhdf5.so.10:H5T_debug
+libhdf5.so.10:H5T_decode
 libhdf5.so.10:H5T_detect_class
+libhdf5.so.10:H5T_encode
 libhdf5.so.10:H5T_get_class
 libhdf5.so.10:H5T_get_member_offset
 libhdf5.so.10:H5T_get_member_type

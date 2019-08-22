@@ -6,7 +6,11 @@ Configure miss: config generic-linux-gnu
 Configure miss: config x86_64-linux-gnu
 Configure miss: config x86_64-linux-gnu
 Configure miss: config x86_64-generic
-Configure miss: config ./config/site-specific/host-arjan-box
+Configure miss: config ./config/site-specific/host-lacerdas-desk1.amr.corp.intel.com
+Configure miss: config ./config/site-specific/host-amr.corp.intel.com
+Configure miss: config ./config/site-specific/host-corp.intel.com
+Configure miss: config ./config/site-specific/host-intel.com
+Configure miss: config ./config/site-specific/host-com
 Configure miss: if unsupported combinations of configure options are allowed
 Configure miss: if Fortran interface enabled
 Configure miss: if Fortran 2003 interface enabled
